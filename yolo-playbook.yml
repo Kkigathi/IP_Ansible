@@ -5,8 +5,8 @@
   tasks:
     - name: Clone Code from GitHub
       git:
-        repo: https://github.com/Kkigathi/IP_Docker.git # URL for my own git repo
-        dest: /devops04/IP_Ansible/IP_Ansible
+        repo: https://github.com/Kkigathi/IP_Ansible.git # URL for my own git repo
+        dest: /devops04/IP_Ansible/IP_Ansible/.vagrant
       tags:
         - clone
     - name: Install Docker #docker installation on the VM we created
@@ -15,4 +15,17 @@
         state: present
       tags:
         - docker
-    
+    - name: Copy ROOT Docker Compose Files
+      copy:
+        src: /devops04/IP_Ansible/IP_Ansible/docker-compose.yml
+        dest: /devops04/IP_Ansible/IP_Ansible/.vagrant
+      tags:
+        - docker-compose
+   # - name: Copy backend Docker Files
+    #  copy:
+     #   src: /devops04/IP_Ansible/IP_Ansible/backend/Dockerfile
+     #   dest: /devops04/IP_Ansible/IP_Ansible/.vagrant
+     # tags:
+     #   - docker-compose
+     #didnt need to copy docker files to ansibele
+          
